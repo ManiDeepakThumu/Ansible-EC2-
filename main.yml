@@ -6,6 +6,7 @@
       amazon.aws.ec2_instance:
         name: "apache-instance"
         region: "us-east-1"
+        vpc_subnet_id: subnet-0f5714298d72b305d
         instance_type: t3.micro
         security_group: default
         image_id: ami-0b5a2b5b8f2be4ec2
