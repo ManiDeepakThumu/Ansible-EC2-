@@ -1,0 +1,10 @@
+<svg id="Capa_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 53 41.8">
+  <style>
+    .st0{fill:url(#SVGID_1_);}
+  </style>
+  <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" y1="20.896" x2="53" y2="20.896">
+    <stop offset="0" stop-color="#E31C24"/>
+    <stop offset="1" stop-color="#E31E79"/>
+  </linearGradient>
+  <path class="st0" d="M23.6 0c-2 7-7.7 41.9-7.9 41.8H1l-1-1.9C1.4 30.4 13.5-.2 13.9 0h9.7zm19.7 0c-.4-.2-12.5 30.4-13.9 39.8l1 1.9h14.8C45.3 41.9 51 7 53 0h-9.7z"/>
+</svg>

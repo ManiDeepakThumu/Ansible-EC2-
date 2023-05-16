@@ -1,0 +1,56 @@
+- name: Create EC2 instance
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: create an instance
+      amazon.aws.ec2_instance:
+        name: "apache-instance"
+        region: "us-east-1"
+        instance_type: t3.micro
+        security_group: default
+        image_id: ami-0b5a2b5b8f2be4ec2
+        network:
+          assign_public_ip: true
+      register: output
+    - name: Access EC2 instance
+      ansible.builtin.add_host:
+        hostname: '{{ item.private_ip_address }}'
+        groupname: webserver
+      loop: "{{ output.instances }}"
+    - name: Wait for SSH
+      ansible.builtin.wait_for:
+        host: '{{ item.private_ip_address }}'
+        port: 22
+      loop: "{{ output.instances }}"
+
+- name: Install Apache Server
+  hosts: webserver
+  become: yes
+  vars:
+    ansible_user: centos
+    ansible_password: DevOps321
+  tasks:
+    - name: Install Apache
+      ansible.builtin.yum:
+        name: httpd
+        state: installed
+    - name: Remove existing Webcontent
+      ansible.builtin.file:
+        path: /var/www/html
+        state: absent
+    - name: Copy Web Content
+      ansible.builtin.copy:
+        src: web/
+        dest: /var/www/html/
+    - name: Start Apache
+      ansible.builtin.systemd:
+        name: httpd
+        state: restarted
+        enabled: yes
+
+
+
+
+
+
+
